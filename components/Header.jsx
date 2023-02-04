@@ -44,7 +44,14 @@ const Header = () => {
       </div>
 
       {/* Right - nav */}
-      <div></div>
+      <div className="flex items-center justify-end text-gray-500 space-x-4">
+        <p className="hidden md:block cursor-pointer">Become a host</p>
+        <GlobeAltIcon className="h-6 cursor-pointer" />
+        <div className="flex items-center space-x-2 p-2 border-2 rounded-full">
+          <UserCircleIcon className="h-6 cursor-pointer" />
+          <MenuIcon className="h-6 cursor-pointer" />
+        </div>
+      </div>
     </header>
   );
 };
