@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import {
@@ -7,8 +8,40 @@ import {
   UsersIcon,
   SearchIcon,
 } from "@heroicons/react/solid";
+import { useState } from "react";
+import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/theme/default.css"; // theme css file
+import { DateRangePicker } from "react-date-range";
 
 const Header = () => {
+  const [searchInput, setSearchInput] = useState("");
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+  const [numOfPersons, setNumOfPersons] = useState(1);
+
+  const handelDateChange = (ranges) => {
+    setStartDate(ranges.selection.startDate);
+    setEndDate(ranges.selection.endDate);
+  };
+
+  const handelCancelClick = () => {
+    setSearchInput("");
+    setStartDate(new Date());
+    setEndDate(new Date());
+    setNumOfPersons(1);
+  };
+
+  const handelSearchClick = (event) => {
+    event.preventDefault();
+    
+  };
+
+  const selectionRange = {
+    startDate: startDate,
+    endDate: endDate,
+    key: "selection",
+  };
+
   return (
     <header
       className="sticky top-[0] z-50 bg-white p-5 shadow-md md:px-10 grid
@@ -30,9 +63,11 @@ const Header = () => {
       {/* Middle - Search */}
       <div
         className="flex items-center 
-      md:border-2 rounded-full py-2"
+        md:border-2 rounded-full py-2"
       >
         <input
+          value={searchInput}
+          onChange={(event) => setSearchInput(event.target.value)}
           type="text"
           placeholder="Start your search"
           className="bg-transparent outline-none 
@@ -53,6 +88,40 @@ const Header = () => {
           <MenuIcon className="h-6 cursor-pointer" />
         </div>
       </div>
+      {searchInput && (
+        <div className="flex flex-col col-span-3 mx-auto">
+          <DateRangePicker
+            ranges={[selectionRange]}
+            minDate={new Date()}
+            rangeColors={["#FD5B61"]}
+            color={"#FD5B61"}
+            onChange={handelDateChange}
+          />
+
+          <div className="flex items-center border-b mb-4">
+            <h2 className="text-2xl flex-grow font-semibold">
+              Number of Guests
+            </h2>
+            <UsersIcon className="h-5" />
+            <input
+              type="number"
+              min={1}
+              value={numOfPersons}
+              onChange={(event) => setNumOfPersons(event.target.value)}
+              className="w-12 pl-2 text-lg outline-none
+            text-red-400 bg-transparent"
+            />
+          </div>
+          <div className="flex items-center justify-evenly">
+            <button className="text-gray-500" onClick={handelCancelClick}>
+              Cancel
+            </button>
+            <button className="text-red-400" onClick={handelSearchClick}>
+              Search
+            </button>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
