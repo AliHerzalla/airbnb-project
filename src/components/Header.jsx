@@ -12,12 +12,17 @@ import { useState } from "react";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
+import { useRouter } from "next/router";
 
 const Header = () => {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [numOfPersons, setNumOfPersons] = useState(1);
+  const router = useRouter();
+
+  console.log(startDate);
+  console.log(endDate);
 
   const handelDateChange = (ranges) => {
     setStartDate(ranges.selection.startDate);
@@ -33,7 +38,19 @@ const Header = () => {
 
   const handelSearchClick = (event) => {
     event.preventDefault();
-    
+    router.push({
+      pathname: "/search",
+      query: {
+        location: searchInput,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        numOfPersons,
+      },
+    });
+  };
+
+  const handelChangeDirection = () => {
+    router.push("/");
   };
 
   const selectionRange = {
@@ -48,7 +65,10 @@ const Header = () => {
       grid-cols-3 text-black"
     >
       {/* Left - Logo */}
-      <div className="flex cursor-pointer h-10 relative items-center my-auto">
+      <div
+        onClick={handelChangeDirection}
+        className="flex cursor-pointer h-10 relative items-center my-auto"
+      >
         <Image
           src={`https://links.papareact.com/qd3`}
           alt="banner image"
@@ -74,6 +94,7 @@ const Header = () => {
           rounded-full pl-5 flex-grow text-sm text-gray-600 placeholder-gray-400"
         />
         <SearchIcon
+          onClick={handelSearchClick}
           className="hidden md:inline-flex h-8 
         bg-red-400 text-white rounded-full p-2 cursor-pointer md:mx-2"
         />
