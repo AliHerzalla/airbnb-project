@@ -18,6 +18,7 @@ const Header = () => {
       <div className="flex cursor-pointer h-10 relative items-center my-auto">
         <Image
           src={`https://links.papareact.com/qd3`}
+          alt="banner image"
           fill={true}
           style={{
             objectFit: "contain",

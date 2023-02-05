@@ -1,3 +1,4 @@
+import "../styles/globals.css";
 export default function Head() {
   return (
     <>
@@ -7,5 +8,5 @@ export default function Head() {
       {/* TODO: */}
       <link rel="icon" href="/favicon.ico" />
     </>
-  )
+  );
 }
