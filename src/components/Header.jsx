@@ -14,15 +14,12 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 import { DateRangePicker } from "react-date-range";
 import { useRouter } from "next/router";
 
-const Header = () => {
+const Header = ({ placeholder }) => {
   const [searchInput, setSearchInput] = useState("");
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [numOfPersons, setNumOfPersons] = useState(1);
   const router = useRouter();
-
-  console.log(startDate);
-  console.log(endDate);
 
   const handelDateChange = (ranges) => {
     setStartDate(ranges.selection.startDate);
@@ -47,6 +44,7 @@ const Header = () => {
         numOfPersons,
       },
     });
+    setSearchInput("");
   };
 
   const handelChangeDirection = () => {
@@ -89,7 +87,7 @@ const Header = () => {
           value={searchInput}
           onChange={(event) => setSearchInput(event.target.value)}
           type="text"
-          placeholder="Start your search"
+          placeholder={placeholder || "Start your search"}
           className="bg-transparent outline-none 
           rounded-full pl-5 flex-grow text-sm text-gray-600 placeholder-gray-400"
         />
