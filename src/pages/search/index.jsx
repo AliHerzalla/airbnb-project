@@ -1,12 +1,12 @@
 "use client";
-import Button from "@/src/components/Button";
-import { Footer } from "@/src/components/Footer";
-import Header from "@/src/components/Header";
+import Button from "../../components/Button";
+import { Footer } from "../../components/Footer";
+import Header from "../../components/Header";
 
 import React from "react";
 import { useRouter } from "next/router";
 import { format } from "date-fns";
-import InfoCard from "@/src/components/InfoCard";
+import InfoCard from "../../components/InfoCard";
 import MapUI from "../../components/MapUI"
 
 const Search = ({ data }) => {
