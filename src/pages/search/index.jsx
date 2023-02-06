@@ -44,7 +44,7 @@ const Search = ({ data }) => {
         </section>
 
         <section className="hidden xl:inline-flex xl:min-w-[600px]">
-          <MapUI />
+          <MapUI data={data}/>
         </section>
       </main>
 
