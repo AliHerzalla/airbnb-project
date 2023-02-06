@@ -5,6 +5,7 @@ import MediumCard from "../components/MediumCard";
 import LargeCard from "../components/LargeCard";
 import { Footer } from "../components/Footer";
 
+
 export default function Home({ data, cardData }) {
   return (
     <div className="min-h-[100vh] bg-white text-black">
