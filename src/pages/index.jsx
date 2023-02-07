@@ -4,11 +4,13 @@ import SmallCard from "../components/SmallCard";
 import MediumCard from "../components/MediumCard";
 import LargeCard from "../components/LargeCard";
 import { Footer } from "../components/Footer";
+import Head from "./head";
 
 
 export default function Home({ data, cardData }) {
   return (
     <div className="min-h-[100vh] bg-white text-black">
+      <Head/>
       <Header />
       <Banner />
       <main className="max-w-7xl mx-auto px-8 sm:px-16">
@@ -42,7 +44,6 @@ export default function Home({ data, cardData }) {
           />
         </section>
       </main>
-
       <Footer />
     </div>
   );
